@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Show Players</title>
+    <link th:href="@{/imgs/icon.webp}" rel="icon" type="image/x-icon">
+    <link rel="stylesheet" th:href="@{../css/show-players.css}">
+</head>
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<body>
+<div class="container">
+    <div class="dropdown">
+        <button class="dropbtn"><strong>Sort By</strong></button>
+        <div class="dropdown-content">
+            <a th:href="@{/show-players(sort='name')}">Name</a>
+            <a th:href="@{/show-players(sort='position')}">Position</a>
+            <a th:href="@{/show-players(sort='element')}">Element</a>
+            <a th:href="@{/show-players(sort='team')}">Team</a>
+        </div>
+    </div>
+    <div class="card-container">
+        <!-- Itera sobre la lista de jugadores -->
+        <div th:each="player : ${players}" class="card">
+            <img th:src="@{/resources/{image}(image=${player.image})}" alt="Player Image">
+            <div class="card-content">
+                <a th:href="@{'/player-details/' + ${player.id}}" class="player-link">
+                    <!-- Enlace al detalle del jugador -->
+                    <h2 th:text="${player.name}"></h2></a>
+                <div class="buttons">
+                    <a th:href="@{'/edit-player/' + ${player.id}}" class="btn-blue">Edit</a>
+                    <a th:href="@{'/delete-player/' + ${player.id}}" class="btn-red">Delete</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <a th:href="@{/}" class="back-button">
+        <i class='bx bx-arrow-back'></i></a>
+</div>
+<script th:inline="javascript">
+        /* Verificar si hay un mensaje flash y mostrar el pop-up */
+        [[${message}]] && Swal.fire({
+            title: 'Success',
+            text: '[[${message}]]',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        });
+    </script>
+</body>
+
+</html>

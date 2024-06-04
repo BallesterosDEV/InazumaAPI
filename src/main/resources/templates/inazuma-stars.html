@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Inazuma Stars</title>
+    <link th:href="@{/imgs/icon.webp}" rel="icon" type="image/x-icon">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" th:href="@{../css/inazuma-stars.css}">
+</head>
+
+<body>
+<div class="main-content">
+    <div class="dropdown-container">
+        <div class="dropdown">
+            <button class="dropbtn">Select Player</button>
+            <div class="dropdown-content">
+                <form th:each="player : ${allPlayers}" th:action="@{/inazuma-stars/add}" method="post">
+                    <input type="hidden" name="playerId" th:value="${player.id}" />
+                    <button type="submit" th:text="${player.name}">Player</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error Message Section -->
+    <div th:if="${errorMessage}" class="error-message">
+        <p th:text="${errorMessage}"></p>
+    </div>
+
+    <!-- Forward Section -->
+    <div class="title-fw">
+        <h2><strong>FORWARDS</strong></h2>
+    </div>
+    <div class="card-container">
+        <div th:each="player : ${userPlayers}" th:if="${player.position == T(com.ballesteros.api.enums.PlayerPosition).FW}" class="card">
+            <div class="buttons">
+                <form th:action="@{/inazuma-stars/remove}" method="post">
+                    <input type="hidden" name="playerId" th:value="${player.id}" />
+                    <button type="submit" class="btn-red">⨯</button>
+                </form>
+            </div>
+            <img th:src="@{/resources/{image}(image=${player.image})}" alt="Player Image">
+            <div class="card-content">
+                <h3 th:text="${player.name}"></h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Midfielder Section -->
+    <div class="title-mf">
+        <h2><strong>MIDFIELDERS</strong></h2>
+    </div>
+    <div class="card-container">
+        <div th:each="player : ${userPlayers}" th:if="${player.position == T(com.ballesteros.api.enums.PlayerPosition).MF}" class="card">
+            <div class="buttons">
+                <form th:action="@{/inazuma-stars/remove}" method="post">
+                    <input type="hidden" name="playerId" th:value="${player.id}" />
+                    <button type="submit" class="btn-red">⨯</button>
+                </form>
+            </div>
+            <img th:src="@{/resources/{image}(image=${player.image})}" alt="Player Image">
+            <div class="card-content">
+                <h3 th:text="${player.name}"></h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Defender Section -->
+    <div class="title-df">
+        <h2><strong>DEFENDERS</strong></h2>
+    </div>
+    <div class="card-container">
+        <div th:each="player : ${userPlayers}" th:if="${player.position == T(com.ballesteros.api.enums.PlayerPosition).DF}" class="card">
+            <div class="buttons">
+                <form th:action="@{/inazuma-stars/remove}" method="post">
+                    <input type="hidden" name="playerId" th:value="${player.id}" />
+                    <button type="submit" class="btn-red">⨯</button>
+                </form>
+            </div>
+            <img th:src="@{/resources/{image}(image=${player.image})}" alt="Player Image">
+            <div class="card-content">
+                <h3 th:text="${player.name}"></h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Goalkeeper Section -->
+    <div class="title-gk">
+        <h2><strong>GOALKEEPERS</strong></h2>
+    </div>
+    <div class="card-container">
+        <div th:each="player : ${userPlayers}" th:if="${player.position == T(com.ballesteros.api.enums.PlayerPosition).GK}" class="card">
+            <div class="buttons">
+                <form th:action="@{/inazuma-stars/remove}" method="post">
+                    <input type="hidden" name="playerId" th:value="${player.id}" />
+                    <button type="submit" class="btn-red">⨯</button>
+                </form>
+            </div>
+            <img th:src="@{/resources/{image}(image=${player.image})}" alt="Player Image">
+            <div class="card-content">
+                <h3 th:text="${player.name}"></h3>
+            </div>
+        </div>
+    </div>
+
+    <a th:href="@{/}" class="back-button">
+        <i class='bx bx-arrow-back'></i>
+    </a>
+</div>
+</body>
+
+</html>

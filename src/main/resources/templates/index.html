@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inazuma API</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" th:href="@{../css/styles.css}">
+    <link th:href="@{/imgs/icon.webp}" rel="icon" type="image/x-icon">
+</head>
+
+<body>
+<div class="title-container">
+    <div class="title">
+        <h1>✦ INAZUMA ELEVEN API ✦</h1>
+    </div>
+    <a th:href="@{/login}" class="back-button">
+        <i class='bx bx-arrow-back'></i>
+    </a>
+</div>
+<div class="container">
+    <div class="btn-container">
+        <a th:href="@{/show-players}" class="btn-index1">SHOW PLAYERS</a>
+        <a th:href="@{/create-player}" class="btn-index2">NEW PLAYER</a>
+        <a th:href="@{/versus-mode}" class="btn-index3">VERSUS MODE</a>
+        <a th:href="@{/inazuma-stars}" class="btn-index4">INAZUMA STARS</a>
+        <a th:href="@{/search}" class="btn-index5">SEARCH</a>
+    </div>
+    <div class="card">
+        <img th:src="@{/imgs/user.png}" alt="Image">
+        <div class="card-content">
+            <h2 th:text="'¡Bienvenido ' + ${userName} + '!'">¡Welcome!</h2>
+        </div>
+    </div>
+</div>
+<footer>
+    <center>
+        <p>By Pablo Ballesteros Lara</p>
+    </center>
+</footer>
+</body>
+
+</html>

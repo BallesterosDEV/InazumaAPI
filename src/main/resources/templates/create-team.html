@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Create Team</title>
+</head>
+
+<body>
+<h1>Create New Team</h1>
+<form th:action="@{/save-team}" th:object="${team}" method="post" enctype="multipart/form-data">
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" th:field="*{name}" required>
+    </div>
+    <div>
+        <label for="description">Description:</label>
+        <textarea id="description" th:field="*{description}" required></textarea>
+    </div>
+    <div>
+        <label for="country">Country:</label>
+        <select id="country" th:field="*{country}" required>
+            <option th:each="country : ${countries}" th:value="${country}" th:text="${country}"></option>
+        </select>
+    </div>
+    <div class="input-box file-input-box" style="margin-top: 100px;">
+        <strong>Image</strong>
+        <br>
+        <label for="file-upload" class="file-label">Select File</label>
+        <input id="file-upload" type="file" class="file-input" th:name="file" />
+        <i class='bx bxs-camera'></i>
+    </div>
+    <div>
+        <button type="submit">Save Team</button>
+    </div>
+</form>
+</body>
+
+</html>

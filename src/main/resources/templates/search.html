@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Search</title>
+  <link th:href="@{/imgs/icon.webp}" rel="icon" type="image/x-icon">
+  <link rel="stylesheet" th:href="@{../css/search.css}">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+<div class="main-content">
+  <div class="wrapper">
+    <!-- Formulario para buscar jugadores por nombre -->
+    <form action="#" th:action="@{/search-player-result}" method="get">
+      <h1>Search player by name</h1>
+      <div class="input-box">
+        <input type="text" name="name" placeholder="Player name" required>
+        <i class='bx bxs-user'></i>
+      </div>
+      <button type="submit" class="btn">Search</button>
+      <div class="not-found" th:if="${searchedPlayer} and ${player == null}">
+        <p>No player found with that name.</p>
+      </div>
+    </form>
+    <!-- Formulario para buscar jugadores por equipo -->
+    <form action="#" th:action="@{/search-team-players-result}" method="get">
+      <h1>Search players by team</h1>
+      <div class="input-box">
+        <input type="text" name="team" placeholder="Team name" required>
+        <i class='bx bxs-shield-alt-2'></i>
+      </div>
+      <button type="submit" class="btn">Search</button>
+      <div class="not-found" th:if="${searchedTeam} and ${players.size() == 0}">
+        <p>No players found for that team.</p>
+      </div>
+    </form>
+    <form action="#" th:action="@{/search-technique-result}" method="get">
+      <h1>Search technique by name</h1>
+      <div class="input-box">
+        <input type="text" name="techniqueName" placeholder="Technique name" required>
+        <i class='bx bx-bullseye'></i>
+      </div>
+      <button type="submit" class="btn">Search</button>
+      <div class="not-found" th:if="${searchedTechnique} and ${technique == null}">
+        <p>No hissatsu technique found with that name.</p>
+      </div>
+    </form>
+  </div>
+
+  <div class="result">
+    <!-- Tarjeta individual de jugador -->
+    <div th:if="${player != null}" class="card-container small-cards">
+      <div class="card">
+        <img th:src="@{/resources/{image}(image=${player.image})}" alt="Player Image">
+        <div class="card-content">
+          <h2 th:text="${player.name}"></h2>
+          <h4 th:text="'&laquo; ' + ${player.nickname} + ' &raquo;'"></h4>
+          <table>
+            <tr>
+              <th>TECHNIQUE</th>
+              <th>KICK</th>
+              <th>CONTROL</th>
+              <th>PRESSURE</th>
+              <th>AGILITY</th>
+              <th>PHYSICAL</th>
+              <th>INTELLIGENCE</th>
+            </tr>
+            <tr>
+              <td th:text="${player.technique}"></td>
+              <td th:text="${player.kick}"></td>
+              <td th:text="${player.control}"></td>
+              <td th:text="${player.pressure}"></td>
+              <td th:text="${player.agility}"></td>
+              <td th:text="${player.physical}"></td>
+              <td th:text="${player.intelligence}"></td>
+            </tr>
+          </table>
+          <div class="details-row">
+            <div>
+              <p>Team</p>
+              <img th:src="@{/resources/{image}(image=${player.team.image})}" alt="Team Image">
+            </div>
+            <div>
+              <p>Position</p>
+              <img th:src="@{/imgs/__${#strings.toLowerCase(player.position)}__.jpeg}" alt="Player Position Image">
+            </div>
+            <div>
+              <p>Element</p>
+              <img th:src="@{/imgs/__${#strings.toLowerCase(player.element)}__.png}" alt="Player Element Image">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Lista de tarjetas de jugadores -->
+    <div th:if="${players != null and !players.isEmpty()}" class="card-container small-cards">
+      <div class="cards-wrapper">
+        <div class="card" th:each="player : ${players}">
+          <img th:src="@{/resources/{image}(image=${player.image})}" alt="Player Image">
+          <div class="card-content">
+            <h2 th:text="${player.name}"></h2>
+            <h4 th:text="'&laquo; ' + ${player.nickname} + ' &raquo;'"></h4>
+            <table>
+              <tr>
+                <th>TECHNIQUE</th>
+                <th>KICK</th>
+                <th>CONTROL</th>
+                <th>PRESSURE</th>
+                <th>AGILITY</th>
+                <th>PHYSICAL</th>
+                <th>INTELLIGENCE</th>
+              </tr>
+              <tr>
+                <td th:text="${player.technique}"></td>
+                <td th:text="${player.kick}"></td>
+                <td th:text="${player.control}"></td>
+                <td th:text="${player.pressure}"></td>
+                <td th:text="${player.agility}"></td>
+                <td th:text="${player.physical}"></td>
+                <td th:text="${player.intelligence}"></td>
+              </tr>
+            </table>
+            <div class="details-row">
+              <div>
+                <p>Team</p>
+                <img th:src="@{/resources/{image}(image=${player.team.image})}" alt="Team Image">
+              </div>
+              <div>
+                <p>Position</p>
+                <img th:src="@{/imgs/__${#strings.toLowerCase(player.position)}__.jpeg}" alt="Player Position Image">
+              </div>
+              <div>
+                <p>Element</p>
+                <img th:src="@{/imgs/__${#strings.toLowerCase(player.element)}__.png}" alt="Player Element Image">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Resultado de supertécnica -->
+    <div th:if="${technique != null}" class="card-container small-cards">
+      <div class="mini-card">
+        <div class="mini-card-content">
+          <h2 th:text="${technique.name}"></h2>
+          <p th:text="'Power: ' + ${technique.power}"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a th:href="@{/}" class="back-button">
+    <i class='bx bx-arrow-back'></i></a>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Versus Mode</title>
+    <link th:href="@{/imgs/icon.webp}" rel="icon" type="image/x-icon">
+    <link rel="stylesheet" th:href="@{../css/versus-mode.css}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+
+<body>
+<div class="dropdown-container">
+    <div class="dropdown" id="dropdown1">
+        <button class="dropbtn" id="btn-select-player1" onclick="toggleDropdown('dropdown-content1')">Select Player 1</button>
+        <div class="dropdown-content" id="dropdown-content1" style="display: none;">
+            <a th:each="player : ${players}" th:href="@{'#'}" th:data-id="${player.id}" th:text="${player.name}" th:onclick="'selectPlayer(' + ${player.id} + ', \'player1\'); return false;'"></a>
+        </div>
+    </div>
+    <a th:href="@{/}" class="back-button">
+        <i class='bx bx-arrow-back'></i></a>
+    <div class="dropdown" id="dropdown2">
+        <button class="dropbtn" id="btn-select-player2" onclick="toggleDropdown('dropdown-content2')">Select Player 2</button>
+        <div class="dropdown-content" id="dropdown-content2" style="display: none;">
+            <a th:each="player : ${players}" th:href="@{'#'}" th:data-id="${player.id}" th:text="${player.name}" th:onclick="'selectPlayer(' + ${player.id} + ', \'player2\'); return false;'"></a>
+        </div>
+    </div>
+</div>
+
+<div class="card-container">
+    <!-- Generar tarjetas ocultas para todos los jugadores -->
+    <div class="card" th:each="player : ${players}" th:id="'card-' + ${player.id}" style="display: none;">
+        <div class="card-header">
+            <img th:src="@{/resources/{image}(image=${player.image})}" alt="Player Image">
+            <div class="player-info">
+                <div class="player-info-flex">
+                    <h2 th:text="${player.name}"></h2>
+                    <h4 th:text="${player.nickname}"></h4>
+                </div>
+                <table>
+                    <tr>
+                        <th>TECHNIQUE</th>
+                        <th>KICK</th>
+                        <th>CONTROL</th>
+                        <th>PRESSURE</th>
+                        <th>AGILITY</th>
+                        <th>PHYSICAL</th>
+                        <th>INTELLIGENCE</th>
+                    </tr>
+                    <tr>
+                        <td th:text="${player.technique}"></td>
+                        <td th:text="${player.kick}"></td>
+                        <td th:text="${player.control}"></td>
+                        <td th:text="${player.pressure}"></td>
+                        <td th:text="${player.agility}"></td>
+                        <td th:text="${player.physical}"></td>
+                        <td th:text="${player.intelligence}"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="card-content">
+            <div class="details-row">
+                <div>
+                    <p><strong>Hissatsu Techniques</strong></p>
+                    <ul>
+                        <li th:each="technique : ${player.hissatsuTechniques}" th:text="${technique.name}" th:data-id="${technique.id}" th:data-name="${technique.name}" th:data-player-id="${player.id}" onclick="selectHissatsuTechnique(this)">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="versus1">
+    <button id="btn-vs" onclick="startVersus()">VS</button>
+</div>
+<div class="versus2">
+    <button id="btn-reset" onclick="resetVersus()" class="hidden">Reset</button>
+</div>
+
+<div class="error hidden" id="error-message">
+    <p><strong>ERROR:</strong> <span id="error-text"></span></p>
+</div>
+
+<div class="alert hidden" id="alert-message">
+    <p><strong>ALERT:</strong> <span id="alert-text"></span></p>
+</div>
+
+<div class="result hidden" id="result-message">
+    <p>¡<span id="winner-name"></span> won the versus!</p>
+</div>
+
+<script>
+        // Objeto para almacenar los jugadores seleccionados
+        var selectedPlayers = {
+            player1: null,
+            player2: null
+        };
+
+        // Objeto para almacenar la técnica seleccionada para cada jugador
+        var selectedHissatsu = {
+            player1: null,
+            player2: null
+        };
+
+        // Función para alternar la visualización del dropdown
+        function toggleDropdown(dropdownId) {
+            var dropdown = document.getElementById(dropdownId);
+            dropdown.style.display = dropdown.style.display === "none" ? "block" : "none";
+        }
+
+        // Función para seleccionar un jugador y mostrar su card
+        function selectPlayer(playerId, player) {
+            var otherPlayer = player === 'player1' ? 'player2' : 'player1';
+
+            if (selectedPlayers[otherPlayer] !== playerId) {
+                // Ocultar la card del jugador anterior si existe
+                if (selectedPlayers[player] !== null) {
+                    var cardToRemove = document.getElementById('card-' + selectedPlayers[player]);
+                    if (cardToRemove) {
+                        cardToRemove.style.display = 'none';
+                    }
+                }
+
+                // Guardar el nuevo jugador seleccionado
+                selectedPlayers[player] = playerId;
+                var card = document.getElementById('card-' + playerId);
+                if (card) {
+                    card.style.display = 'block';
+                    // Mover la card a la posición correcta (izquierda para player1, derecha para player2)
+                    var cardContainer = document.querySelector('.card-container');
+                    if (player === 'player1') {
+                        cardContainer.insertBefore(card, cardContainer.firstChild);
+                    } else {
+                        cardContainer.appendChild(card);
+                    }
+                }
+
+                // Resetear la técnica seleccionada del jugador
+                selectedHissatsu[player] = null;
+
+                // Ocultar el dropdown
+                toggleDropdown('dropdown-content' + (player === 'player1' ? '1' : '2'));
+
+                // Deshabilitar la selección del jugador en el dropdown actual y habilitar en el otro
+                document.getElementById('btn-select-' + player).disabled = true;
+                document.getElementById('btn-select-' + otherPlayer).disabled = false;
+            }
+        }
+
+        // Función para seleccionar una técnica Hissatsu para el jugador
+        function selectHissatsuTechnique(element) {
+            var playerId = element.getAttribute('data-player-id');
+            var techniqueId = element.getAttribute('data-id');
+            var techniqueName = element.getAttribute('data-name');
+
+            var player;
+            var playerName;
+
+            if (selectedPlayers.player1 == playerId) {
+                player = 'player1';
+                playerName = document.querySelector('#card-' + playerId + ' h2').textContent;
+            } else if (selectedPlayers.player2 == playerId) {
+                player = 'player2';
+                playerName = document.querySelector('#card-' + playerId + ' h2').textContent;
+            }
+
+            if (player) {
+                selectedHissatsu[player] = techniqueId;
+                var message = playerName + ' selected ' + techniqueName;
+                document.getElementById('alert-text').textContent = message;
+                document.getElementById('alert-message').classList.remove('hidden');
+
+                // Ocultar el mensaje de error si está visible
+                document.getElementById('error-message').classList.add('hidden');
+            } else {
+                console.error('Error: Cannot find player with that hissatsu technique.');
+            }
+        }
+
+        function startVersus() {
+            var player1 = selectedPlayers.player1;
+            var technique1 = selectedHissatsu.player1;
+            var player2 = selectedPlayers.player2;
+            var technique2 = selectedHissatsu.player2;
+
+            if (player1 && technique1 && player2 && technique2) {
+                fetch(`/players/versus?player1Id=${player1}&technique1Id=${technique1}&player2Id=${player2}&technique2Id=${technique2}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    document.getElementById('alert-message').classList.add('hidden');
+
+                    if (data && data.name) {
+                        document.getElementById('result-message').classList.remove('hidden');
+                        document.getElementById('winner-name').textContent = data.name;
+
+                        if (data.name === "¡Draw!") {
+                            document.querySelectorAll('.card').forEach(card => {
+                                if (card.style.display !== 'none') {
+                                    card.classList.add('draw');
+                                }
+                            });
+                        } else {
+                            var winnerCard = document.getElementById('card-' + data.id);
+                            var loserCard = document.getElementById('card-' + (data.id == selectedPlayers.player1 ? selectedPlayers.player2 : selectedPlayers.player1));
+
+                            winnerCard.classList.add('winner');
+                            loserCard.classList.add('loser');
+                        }
+                    } else {
+                        console.error('Invalid response data:', data);
+                        document.getElementById('error-text').textContent = 'Invalid response data';
+                        document.getElementById('error-message').classList.remove('hidden');
+                    }
+
+                    document.getElementById('btn-reset').classList.remove('hidden');
+                    document.getElementById('btn-vs').classList.add('hidden');
+                })
+                .catch(error => {
+                    console.error('Error starting versus:', error);
+                    document.getElementById('error-text').textContent = 'Error starting versus: ' + error.message;
+                    document.getElementById('error-message').classList.remove('hidden');
+                });
+            }
+        }
+
+        // Función para resetear la página y ocultar las cards
+        function resetVersus() {
+            // Ocultar todas las cards
+            document.querySelectorAll('.card').forEach(card => {
+                card.style.display = 'none';
+                card.classList.remove('winner', 'loser', 'draw');
+            });
+
+            // Resetear jugadores y técnicas seleccionadas
+            selectedPlayers.player1 = null;
+            selectedPlayers.player2 = null;
+            selectedHissatsu.player1 = null;
+            selectedHissatsu.player2 = null;
+
+            // Ocultar mensajes de resultado y error
+            document.getElementById('result-message').classList.add('hidden');
+            document.getElementById('error-message').classList.add('hidden');
+            document.getElementById('alert-message').classList.add('hidden');
+
+            // Habilitar los botones de selección de jugadores
+            document.getElementById('btn-select-player1').disabled = false;
+            document.getElementById('btn-select-player2').disabled = false;
+
+            // Mostrar botón de VS y ocultar botón de reset
+            document.getElementById('btn-vs').classList.remove('hidden');
+            document.getElementById('btn-reset').classList.add('hidden');
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link th:href="@{/imgs/icon.webp}" rel="icon" type="image/x-icon">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" th:href="@{/css/login.css}">
+</head>
+
+<body>
+
+<div class="wrapper">
+  <form th:action="@{/auth/login}" th:object="${loginRequest}" method="post">
+    <h1>Login</h1>
+
+    <div th:if="${loginError}" class="error">
+      <p th:text="${loginError}"></p>
+    </div>
+
+    <div class="input-box">
+      <input type="text" th:field="*{username}" placeholder="Username" required>
+      <i class='bx bxs-user'></i>
+    </div>
+
+    <div class="input-box">
+      <input type="password" th:field="*{password}" placeholder="Password" required>
+      <i class='bx bxs-lock-alt'></i>
+    </div>
+
+    <button type="submit" class="btn">Submit</button>
+    <div class="register-link">
+      <p>Don't have an account? <a th:href="@{/register}">Register</a></p>
+    </div>
+  </form>
+</div>
+
+</body>
+
+</html>

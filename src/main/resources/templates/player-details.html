@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Player Details</title>
+  <link th:href="@{/imgs/icon.webp}" rel="icon" type="image/x-icon">
+  <link rel="stylesheet" th:href="@{../css/player-details.css}">
+</head>
+
+<body>
+<div class="card-container">
+  <div class="card">
+    <img th:src="@{/resources/{image}(image=${player.image})}" alt="Player Image">
+    <div class="card-content">
+      <h2 th:text="${player.name}"></h2>
+      <h4 th:text="'&laquo; ' + ${player.nickname} + ' &raquo;'"></h4>
+      <table>
+        <tr>
+          <th>TECHNIQUE</th>
+          <th>KICK</th>
+          <th>CONTROL</th>
+          <th>PRESSURE</th>
+          <th>AGILITY</th>
+          <th>PHYSICAL</th>
+          <th>INTELLIGENCE</th>
+        </tr>
+        <tr>
+          <td th:text="${player.technique}"></td>
+          <td th:text="${player.kick}"></td>
+          <td th:text="${player.control}"></td>
+          <td th:text="${player.pressure}"></td>
+          <td th:text="${player.agility}"></td>
+          <td th:text="${player.physical}"></td>
+          <td th:text="${player.intelligence}"></td>
+        </tr>
+      </table>
+
+      <div class="details-row">
+        <div>
+          <p>Team</p>
+          <img th:src="@{/resources/{image}(image=${player.team.image})}" alt="Team Image">
+        </div>
+        <div>
+          <p>Position</p>
+          <img th:src="@{/imgs/__${#strings.toLowerCase(player.position)}__.jpeg}" alt="Player Position Image">
+        </div>
+        <div>
+          <p>Element</p>
+          <img th:src="@{/imgs/__${#strings.toLowerCase(player.element)}__.png}" alt="Player Element Image">
+
+        </div>
+      </div>
+
+
+      <div class="buttons">
+        <a th:href="@{/show-players}" class="btn-white">Volver</a>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+
+</html>

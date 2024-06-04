@@ -1,0 +1,150 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Poppins", sans-serif;
+}
+
+body {
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../imgs/fondo.webp') no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+
+.card-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	margin-top: 20px;
+}
+
+.card {
+	width: 600px;
+	/* Ancho de la carta */
+	height: 670px;
+	/* Altura de la carta */
+	background-color: rgba(164, 127, 210, 0.6);
+	border: 2px solid rgba(255, 255, 255, 0.2);
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	backdrop-filter: blur(7px);
+	/* Efecto de desenfoque */
+	overflow: hidden;
+	border: 4px solid #fff;
+	transition: transform 0.3s ease;
+	/* Para recortar la imagen */
+}
+
+.card:hover {
+	transform: scale(1.05);
+	/* Agrandar la card al pasar el ratón por encima */
+}
+
+.card img {
+	width: 100%;
+	/* La imagen ocupa el 100% del ancho de la carta */
+	height: 60%;
+	/* La imagen ocupa el 70% de la altura de la carta */
+	object-fit: cover;
+	/* Para ajustar la imagen al contenedor */
+}
+
+.card-content {
+	padding: 20px;
+	height: 40%;
+	/* La sección de contenido ocupa el 30% de la altura de la carta */
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+table {
+	width: 100%;
+	text-align: center;
+	font-size: 12px;
+	color: #fff;
+}
+
+th,
+td {
+	padding: 10px;
+	font-size: 12px;
+	color: #fff;
+}
+
+p {
+	color: #fff;
+}
+
+.card-content h2 {
+	color: #fff;
+	text-align: center;
+	margin-right: 15px;
+}
+
+.card-content h4 {
+	color: #fff;
+	text-align: center;
+	margin-right: 15px;
+}
+
+.card-content p {
+	text-align: center;
+	font-weight: bold;
+}
+
+.card-content .details-row {
+	display: flex;
+	justify-content: space-around;
+	max-height: 60px;
+	/* Nuevo estilo para limitar el ancho */
+}
+
+.card-content .details-row> div {
+	text-align: center;
+}
+
+.card-content .details-row img {
+	width: 30px;
+	height: auto;
+	border-radius: 5px;
+}
+
+.buttons {
+	display: flex;
+	justify-content: center;
+}
+
+.buttons a {
+	width: 50%;
+	margin-right: 15px;
+	height: 30px;
+	border: none;
+	outline: none;
+	border-radius: 15px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	cursor: pointer;
+	font-size: 16px;
+	color: #000;
+	font-weight: 600;
+	text-decoration: none;
+	display: flex;
+	justify-content: center;
+}
+
+.btn-white {
+	background-color: #fff;
+}
+
+.btn-white:hover {
+	/* Estilo al pasar el mouse sobre el botón */
+	background-color: #fff;
+	/* Mantener el color de fondo al pasar el mouse */
+}
+
+.text-button {
+	background: transparent;
+	color: white;
+	border: none;
+}

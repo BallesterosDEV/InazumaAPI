@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Player</title>
+    <link th:href="@{/imgs/icon.webp}" rel="icon" type="image/x-icon">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" th:href="@{../css/create-player.css}">
+</head>
+
+<body>
+<div class="container">
+    <form th:action="@{/update-player/{id}(id=${player.id})}" th:object="${player}" method="POST" enctype="multipart/form-data">
+        <input type="hidden" th:field="*{id}" />
+        <div class="wrapper">
+            <h1>Edit Player</h1>
+            <div class="input-box">
+                <div class="label-container">
+                    <strong>Name:</strong>
+                    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error-message"></div>
+                </div>
+                <input type="text" placeholder="New name..." th:field="*{name}" required>
+                <i class='bx bxs-user-circle'></i>
+            </div>
+
+            <div class="input-box">
+                <div class="label-container">
+                    <strong>Nickname:</strong>
+                </div>
+                <input type="text" placeholder="New nickname..." th:field="*{nickname}">
+                <i class='bx bxs-star'></i>
+            </div>
+
+            <div class="input-box">
+                <div class="label-container">
+                    <strong>Position:</strong>
+                </div>
+                <select th:field="*{position}">
+                    <option th:each="position : ${T(com.ballesteros.api.enums.PlayerPosition).values()}" th:value="${position}" th:text="${#strings.capitalize(position.name())}">
+                    </option>
+                </select>
+                <i class='bx bxs-crown'></i>
+            </div>
+
+            <!-- Eliminado el campo de elemento -->
+
+            <div class="input-box">
+                <div class="label-container">
+                    <strong>Team:</strong>
+                </div>
+                <select th:field="*{team}">
+                    <option th:each="team : ${teams}" th:value="${team.id}" th:text="${team.name}"></option>
+                </select>
+                <i class='bx bxs-shield'></i>
+            </div>
+
+            <!-- Eliminado el campo de supertécnicas -->
+
+            <div class="input-box file-input-box">
+                <div class="label-container">
+                    <strong>Image:</strong>
+                    <div th:if="${#fields.hasErrors('image')}" th:errors="*{image}" class="error-message"></div>
+                </div>
+                <label for="file-upload" class="file-label">Select File</label>
+                <input id="file-upload" type="file" class="file-input" onchange="displayFileName(this)" name="file" />
+                <i class='bx bxs-camera'></i>
+            </div>
+
+            <button type="submit" class="btn">Submit</button>
+        </div>
+    </form>
+
+    <a th:href="@{/show-players}" class="back-button">
+        <i class='bx bx-arrow-back'></i>
+    </a>
+</div>
+<script th:inline="javascript">
+        function displayFileName(input) {
+            const fileName = input.files[0].name;
+            input.parentNode.querySelector('.file-label').innerText = fileName;
+        }
+    </script>
+</body>
+
+</html>

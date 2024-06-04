@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Crear Super Técnicas</title>
+  <link rel="stylesheet" th:href="@{../css/supertécnicas.css}">
+</head>
+
+<body>
+<div class="titulo">
+  <h1>Crear Super Técnicas</h1>
+</div>
+<div class="contenedor">
+  <form th:action="@{/supertécnicas}" th:object="${hissatsuTechniques}" method="post">
+    <div class="form-group">
+      <label for="name">Nombre:</label>
+      <input type="text" id="name" th:field="*{name}" required>
+    </div>
+    <div class="form-group">
+      <label for="type">Tipo:</label>
+      <select id="type" th:field="*{type}" required>
+        <option th:each="type : ${types}" th:value="${type}" th:text="${type}"></option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="power">Poder:</label>
+      <input type="number" id="power" th:field="*{power}" required>
+    </div>
+    <button type="submit" class="btn">Guardar</button>
+  </form>
+</div>
+</body>
+
+</html>

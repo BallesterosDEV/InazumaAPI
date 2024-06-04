@@ -1,0 +1,361 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../imgs/fondo.webp') no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 90vh;
+}
+
+.dropdown-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.card {
+    width: 600px; /* Ancho de la carta */
+    background-color: rgba(164, 127, 210, 0.6);
+    /* Fondo transparente */
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+     /* Efecto de desenfoque */
+    overflow: hidden;
+    border: 4px solid #fff;
+    transition: transform 0.3s ease;
+    position: relative;
+    display: none;/* Para recortar la imagen */
+}
+
+.card:hover {
+    transform: scale(1.05); /* Agrandar la card al pasar el ratón por encima */
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.card-header img {
+    width: 23%; /* La imagen ocupa el 33% de la altura de la carta */
+    height: auto; /* Mantener la relación de aspecto */
+    border-radius: 10px; /* Bordes redondeados */
+    object-fit: cover; /* Ajustar la imagen al contenedor */
+    margin-right: 5px; /* Espacio entre la imagen y el texto */
+}
+
+.player-info {
+    margin-top: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.player-info h2 {
+    color: #fff;
+    text-align: center;
+}
+
+.player-info h4 {
+    color: #fff;
+    margin: 0;
+    text-align: center;
+}
+
+.card-content {
+    padding: 20px;
+}
+
+table {
+    margin-top: 20px;
+    width: 50px;
+    text-align: center;
+    font-size: 12px;
+    color: #fff;
+}
+
+th,
+td {
+    padding: 2px;
+}
+
+.details-row {
+    display: flex;
+    justify-content: space-around;
+}
+
+.details-row > div {
+    text-align: center;
+}
+
+.buttons {
+    display: flex;
+    bottom: 10px;
+    width: 92.5%;
+    justify-content: center;
+    position: absolute;
+}
+
+.buttons button {
+    width: 30%;
+    height: 30px;
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #000;
+    font-weight: 600; /* Distancia desde el borde inferior *//
+}
+
+.btn-white {
+    background-color: #fff;
+}
+
+.element-image img {
+    width: 50px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    align-items: center;
+    display: flex;
+    justify-content: center; /* Centra el botón horizontalmente */
+    margin-bottom: 20px;
+}
+
+.dropbtn {
+    background-color: rgba(164, 127, 210, 0.6);
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    width: 350px; /* Aumenta el ancho del botón */
+    height: 60px; /* Aumenta la altura del botón */
+    text-align: center;
+    border-radius: 30px;
+    border: solid 2px #fff;
+    margin-top: 20px; /* Centra el texto del botón */
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgba(164, 127, 210, 0.6);
+    min-width: 180px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    top: calc(100% + 0px); /* Mover el menú desplegable hacia abajo */
+    left: 50%; /* Alinear el menú desplegable con el centro del botón */
+    transform: translateX(-50%); /* Corregir la posición para que el centro del menú coincida con el botón */
+    border-radius: 15px;
+    border: 2px solid #fff;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.dropbtn:hover + .dropdown-content {
+    display: block; /* Mostrar el menú desplegable cuando se hace hover en el botón */
+}
+
+.dropdown-content a {
+    color: #fff;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+}
+
+.dropdown-content a:hover {
+    background-color: rgba(164, 127, 210, 0.6);
+}
+
+
+
+.dropdown:hover .dropdown-content,
+.dropdown-content:hover {
+    display: block;
+}
+
+.dropbtn:hover {
+    background-color: #fff;
+    /* Cambia el color al hacer hover */
+}
+
+.details-row ul {
+    color: #fff;
+    list-style: none; /* Elimina los marcadores de lista */
+    padding: 0; /* Elimina el relleno predeterminado de la lista */
+}
+
+p{
+    color: #fff;
+}
+
+a {
+    text-decoration: none; /* Quita la decoración predeterminada */
+}
+
+a:hover {
+    text-decoration: none; /* Puedes cambiar underline por otro valor si deseas una decoración diferente al pasar el mouse por encima */
+}
+
+.versus1{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 30px;
+    border: 4px solid white;
+    border-radius: 15px;
+    margin-top: 50px;
+    margin-left: 45%;
+    width: 10%;
+    height: 10%
+    color: #fff;
+    background-color: rgba(164, 127, 210, 0.6);
+}
+
+.dropdown-content a:hover {
+            background-color: #f1f1f1;
+            color: white;
+}
+.card-content ul li:hover {
+            color: white;
+}
+
+.versus2{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 30px;
+    border: 4px solid white;
+    border-radius: 15px;
+    margin-top: 50px;
+    margin-left: 45%;
+    width: 10%;
+    height: 10%
+    color: #fff;
+    background-color: rgba(164, 127, 210, 0.6);
+}
+
+button{
+    background-color: rgba(164, 127, 210, 0.6);
+    border: none;
+    font-size: 30px;
+    border-radius: 15px;
+    font-weight: bold;
+    color: white;
+    width: 70px;
+}
+
+.result{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 30px;
+    border: 4px solid white;
+    border-radius: 15px;
+    margin-top: 30px;
+    margin-left: 25%;
+    width: 50%;
+    background-color: rgba(164, 127, 210, 0.6);
+}
+
+.error{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 20px;
+    border: 4px solid white;
+    border-radius: 15px;
+    margin-top: 30px;
+    margin-left: 25%;
+    width: 50%;
+    background-color: rgba(164, 127, 210, 0.6);
+}
+
+.alert{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 20px;
+    border: 4px solid white;
+    border-radius: 15px;
+    margin-top: 30px;
+    margin-left: 25%;
+    width: 50%;
+    background-color: rgba(164, 127, 210, 0.6);
+}
+
+.error p{
+    color: #8B0000;
+    font-weight: bold;
+}
+.alert p{
+color: white;
+font-weight: bold;
+
+}
+
+.hidden {
+ display: none;
+ }
+ .winner {
+  background-color: rgba(144, 238, 144, 0.6); /* Verde claro */
+ }
+.loser {
+    background-color: rgba(255, 99, 71, 0.6); /* Rojo suave */
+}
+.draw {
+    background-color: rgba(173, 216, 230, 0.6); /* Azul suave */
+}
+.details-row ul li:hover {
+   background-color: #f1f1f1;
+   color: black;
+   cursor: pointer;
+}
+
+.back-button {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 20px 0;
+      font-size: 25px;
+      color: #fff;
+      background-color: rgba(164, 127, 210, 0.6);
+      border: 4px solid white;
+      backdrop-filter: blur(7px);
+      border-radius: 10px;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+    }
+.back-button:hover {
+      background-color: #0056b3;
+}

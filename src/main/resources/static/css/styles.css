@@ -1,0 +1,280 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Poppins", sans-serif;
+}
+
+html,
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+body {
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../imgs/fondo.webp') no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+
+.container {
+	display: flex;
+	flex-direction: row;
+	gap: 150px;
+	margin-top: 50px;
+}
+
+.title {
+	text-align: center;
+	font-size: 30px;
+	font-weight: bolder;
+	border-radius: 15px;
+	width: 60%;
+	margin-left: 20%;
+	margin-top: 10px;
+	background-color: rgba(164, 127, 210, 0.6);
+	color: white;
+	border: 4px solid white;
+	font-style: italic;
+}
+
+.btn-container {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	margin-left: 20%;
+}
+
+a {
+	text-decoration: none;
+	color: white;
+	font-size: 40px;
+}
+
+footer {
+	margin-top: 30px;
+	max-width: 30%;
+	margin-left: 35%;
+}
+
+footer p {
+	font-size: 25px;
+	color: white;
+	border: 4px solid white;
+	border-radius: 15px;
+	background-color: rgba(164, 127, 210, 0.6);
+}
+
+.btn-index1 {
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	align-items: center;
+	font-size: 40px;
+	border: 4px solid white;
+	border-radius: 25px;
+	background-color: rgba(92, 113, 250, 0.6);
+	width: 350px;
+	height: 80px;
+	font-style: italic;
+	font-weight: bold;
+}
+
+.btn-index2 {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	font-size: 40px;
+	border: 4px solid white;
+	border-radius: 25px;
+	background-color: rgba(64, 241, 64, 0.6);
+	width: 350px;
+	height: 80px;
+	font-style: italic;
+	font-weight: bold;
+}
+
+.btn-index3 {
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	align-items: center;
+	font-size: 40px;
+	border: 4px solid white;
+	border-radius: 25px;
+	background-color: rgba(228, 64, 64, 0.6);
+	width: 350px;
+	height: 80px;
+	font-style: italic;
+	font-weight: bold;
+}
+
+.btn-index4 {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	font-size: 40px;
+	border: 4px solid white;
+	font-style: italic;
+	border-radius: 25px;
+	background-color: rgba(235, 213, 66, 0.6);
+	width: 350px;
+	height: 80px;
+	font-style: italic;
+	font-weight: bold;
+}
+
+.btn-index5 {
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	align-items: center;
+	font-size: 40px;
+	font-style: italic;
+	border: 4px solid white;
+	border-radius: 25px;
+	background-color: rgba(226, 41, 205, 0.6);
+	width: 350px;
+	height: 80px;
+	font-style: italic;
+	font-weight: bold;
+}
+
+.title-container {
+	display: flex;
+	flex-direction: row;
+}
+
+.card {
+	width: 400px;
+	/* Ancho de la carta */
+	height: 450px;
+	/* Altura de la carta */
+	background-color: rgba(164, 127, 210, 0.6);
+	border: 2px solid rgba(255, 255, 255, 0.2);
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	backdrop-filter: blur(7px);
+	/* Efecto de desenfoque */
+	overflow: hidden;
+	border: 4px solid #fff;
+	transition: transform 0.3s ease;
+	/* Para recortar la imagen */
+}
+
+.card:hover {
+	transform: scale(1.05);
+	/* Agrandar la card al pasar el ratón por encima */
+}
+
+.card img {
+	width: 100%;
+	/* La imagen ocupa el 100% del ancho de la carta */
+	height: 80%;
+	/* La imagen ocupa el 70% de la altura de la carta */
+	object-fit: cover;
+	/* Para ajustar la imagen al contenedor */
+}
+
+.card-content {
+	padding: 20px;
+	height: 40%;
+	/* La sección de contenido ocupa el 30% de la altura de la carta */
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+p {
+	color: #fff;
+}
+
+.card-content h2 {
+	color: #fff;
+	text-align: center;
+	font-size: 18px;
+}
+
+.back-button {
+	display: inline-block;
+	padding: 10px 20px;
+	margin: 20px 0;
+	font-size: 25px;
+	color: #fff;
+	background-color: rgba(164, 127, 210, 0.6);
+	border: 4px solid white;
+	backdrop-filter: blur(7px);
+	border-radius: 10px;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+	margin-left: 100px;
+}
+
+.back-button:hover {
+	background-color: #0056b3;
+}
+
+.btn-index1:hover {
+	background-color: #fff;
+	color: black;
+}
+
+.btn-index2:hover {
+	background-color: #fff;
+	color: black;
+}
+
+.btn-index3:hover {
+	background-color: #fff;
+	color: black;
+}
+
+.btn-index4:hover {
+	background-color: #fff;
+	color: black;
+}
+
+.btn-index5:hover {
+	background-color: #fff;
+	color: black;
+}
+
+@media (max-width: 768px) {
+	.container {
+		flex-direction: column;
+		align-items: center;
+		gap: 20px;
+	}
+	.title {
+		width: 90%;
+		margin: 20px auto;
+	}
+	.btn-container {
+		width: 100%;
+		align-items: center;
+	}
+	.btn-index1,
+	.btn-index2,
+	.btn-index3,
+	.btn-index4,
+	.btn-index5 {
+		font-size: 20px;
+		width: 80%;
+	}
+	.back-button {
+		margin: 20px auto;
+	}
+	footer {
+		width: 90%;
+		margin: 20px auto;
+	}
+	footer p {
+		font-size: 20px;
+	}
+}

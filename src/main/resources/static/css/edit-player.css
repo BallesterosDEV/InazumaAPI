@@ -1,0 +1,210 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Poppins", sans-serif;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../imgs/fondo.webp') no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+}
+
+.wrapper {
+	width: 570px;
+	height: 120%;
+	backdrop-filter: blur(7px);
+	background-color: rgba(164, 127, 210, 0.6);
+	border: solid 2px white;
+	box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+	color: #fff;
+	border-radius: 10px;
+	padding: 5px 40px;
+	margin: 20px;
+}
+
+.wrapper h1 {
+	font-size: 36px;
+	text-align: center;
+}
+
+.wrapper .input-box {
+	position: relative;
+	width: 100%;
+	height: 50px;
+	margin: 30px 0;
+	gap: 20px;
+}
+
+.input-box input {
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	border: none;
+	outline: none;
+	border: 2px solid rgba(255, 255, 255, .2);
+	border-radius: 40px;
+	font-size: 16px;
+	color: #fff;
+	padding: 20px 45px 20px 20px;
+}
+
+.input-box input::placeholder {
+	color: #fff;
+}
+
+.input-box i {
+	position: absolute;
+	right: 20px;
+	top: 50%;
+	transform: translateY(-50%);
+	font-size: 25px;
+	margin-top: 30px;
+}
+
+.wrapper .btn {
+	width: 70%;
+	height: 30px;
+	background: #fff;
+	border: none;
+	outline: none;
+	border-radius: 40px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+	cursor: pointer;
+	font-size: 16px;
+	color: #333;
+	font-weight: 600;
+	margin: 0 auto;
+	display: block;
+}
+
+.input-box select {
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	border: none;
+	outline: none;
+	border: 2px solid rgba(255, 255, 255, .2);
+	border-radius: 40px;
+	font-size: 16px;
+	line-height: 1.5;
+	color: #fff;
+	padding: 10px 10px 10px 20px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+.input-box select::-ms-expand {
+	display: none;
+}
+
+.input-box select option {
+	color: #fff;
+	background-color: rgba(164, 127, 210, 0.6);
+}
+
+.input-box select[multiple] option {
+	color: #fff;
+	background-color: transparent;
+}
+
+.input-box select[multiple]:hover option {
+	color: #fff;
+}
+
+.input-box select[multiple] {
+	width: 100%;
+	height: 240%;
+	background-color: transparent;
+	border: none;
+	outline: none;
+	border-radius: 40px;
+	font-size: 16px;
+	color: #fff;
+	padding: 20px 45px 20px 20px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	overflow-y: hidden;
+}
+
+.file-label {
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	line-height: 50px;
+	padding-left: 20px;
+	background: transparent;
+	border: 2px solid rgba(255, 255, 255, .2);
+	border-radius: 40px;
+	font-size: 16px;
+	color: #fff;
+	cursor: pointer;
+}
+
+.file-input {
+	display: none;
+}
+
+.scrollable-select {
+	position: relative;
+	width: 100%;
+	height: 50px;
+	overflow: hidden;
+}
+
+.scrollable-select select {
+	width: 100%;
+	height: 200%;
+	background: transparent;
+	border: none;
+	outline: none;
+	font-size: 16px;
+	color: #fff;
+	padding: 0 20px;
+	box-sizing: border-box;
+}
+
+.scrollable-select option {
+	background-color: rgba(164, 127, 210, 0.6);
+	padding: 20px;
+}
+
+.scrollable-select option:hover {
+	background-color: rgba(164, 127, 210, 0.8);
+}
+
+.scrollable-select select[multiple] {
+	height: auto;
+}
+
+.back-button {
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	color: #fff;
+	font-size: 24px;
+	text-decoration: none;
+}
+
+.error-message {
+	color: red;
+	margin-left: 10px;
+}
+
+.label-container {
+	display: flex;
+	align-items: center;
+}

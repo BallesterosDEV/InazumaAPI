@@ -1,0 +1,296 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../imgs/fondo.webp') no-repeat;
+
+    background-size: cover;
+    background-position: center;
+}
+
+.main-content {
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 40px;
+    margin: 40px;
+    flex-grow: 1;
+}
+
+.card {
+    position: relative;
+    width: 300px; /* Ancho de la carta */
+    height: 400px; /* Altura de la carta */
+    background-color: rgba(164, 127, 210, 0.6);    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(7px); /* Efecto de desenfoque */
+    overflow: hidden;
+    border: 2px solid #fff;
+    transition: transform 0.3s ease;/* Para recortar la imagen */
+}
+
+.card:hover {
+    transform: scale(1.1); /* Agrandar la card al pasar el ratón por encima */
+}
+
+.card img {
+    width: 100%; /* La imagen ocupa el 100% del ancho de la carta */
+    height: 85%; /* La imagen ocupa el 70% de la altura de la carta */
+    object-fit: cover; /* Para ajustar la imagen al contenedor */
+}
+
+.card-content {
+    height: 15%; /* La sección de contenido ocupa el 30% de la altura de la carta */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.card-content h3 {
+    color:#fff;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.buttons {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: none;
+}
+
+.buttons .btn-red {
+    width: 40px;
+    height: 40px;
+    background-color: rgb(241, 69, 69);
+    border: 2px solid white;
+    border-radius: 8px; /* Cambiado a 50% para asegurar que sea redondo */
+    color: #fff;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    cursor: pointer;
+    line-height: 0; /* Eliminar cualquier efecto de line-height */
+}
+
+.btn-red a {
+    display: block; /* Asegura que el link ocupe todo el botón */
+    width: 100%;
+    height: 100%;
+    line-height: 40px;
+    color: white;/* Igual al height para centrar el texto verticalmente */
+}
+
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    align-items: center;
+    display: flex;
+    justify-content: center; /* Centra el botón horizontalmente */
+    margin-bottom: 20px;
+    width: 20%;
+    margin-left: 40%;
+}
+
+.dropbtn {
+    background-color: rgba(164, 127, 210, 0.6);
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    width: 350px; /* Aumenta el ancho del botón */
+    height: 60px; /* Aumenta la altura del botón */
+    text-align: center;
+    border-radius: 30px;
+    border: solid 2px #fff;
+    margin-top: 20px;/* Centra el texto del botón */
+}
+
+.dropbtn:hover {
+    background: white;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgba(164, 127, 210, 0.6);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    top: calc(100% + 0px); /* Mover el menú desplegable hacia abajo */
+    left: 50%; /* Alinear el menú desplegable con el centro del botón */
+    transform: translateX(-50%); /* Corregir la posición para que el centro del menú coincida con el botón */
+    border-radius: 15px;
+    border: 2px solid #fff;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.dropbtn:hover + .dropdown-content {
+    display: block; /* Mostrar el menú desplegable cuando se hace hover en el botón */
+}
+
+.dropdown-content a {
+    color: #fff;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+.dropdown-content button{
+background: transparent;
+border: none;
+color: #fff;
+font-size: 20px;
+width: 100%;
+}
+
+.dropdown-content button:hover{
+background-color: #fff;
+color: black;
+}
+
+.dropdown:hover .dropdown-content,
+.dropdown-content:hover {
+    display: block;
+}
+
+.dropbtn:hover {
+    background-color: white; /* Cambia el color al hacer hover */
+}
+
+.player-link {
+  text-decoration: none; /* Elimina el subrayado */
+  color: #fff;
+  display: flex; /* Hace que el enlace sea un contenedor flexible */
+  justify-content: center; /* Centra horizontalmente el contenido */
+  align-items: center; /* Centra verticalmente el contenido */
+  height: 100%;
+}
+
+.player-link:hover {
+   color: #cccccc; /* Mantiene el color del texto al pasar el mouse */
+}
+
+.card:hover .buttons {
+    display: block;
+}
+
+.title-fw{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 30px;
+    border: 4px solid white;
+    border-radius: 15px;
+    margin-top: 30px;
+    margin-left: 5%;
+    width: 90%;
+    background-color: rgba(255, 49, 49, 0.6);
+}
+
+.title-mf{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 30px;
+    border: 4px solid white;
+    border-radius: 15px;
+    margin-top: 30px;
+    margin-left: 5%;
+    width: 90%;
+    background-color: rgba(49, 255, 100, 0.6);
+}
+
+.title-df{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 30px;
+    border: 4px solid white;
+    border-radius: 15px;
+    margin-top: 30px;
+    margin-left: 5%;
+    width: 90%;
+    background-color: rgba(92, 113, 250, 0.6);
+}
+
+.title-gk{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 30px;
+    border: 4px solid white;
+    border-radius: 15px;
+    margin-top: 30px;
+    margin-left: 5%;
+    width: 90%;
+    background-color: rgba(230, 194, 64, 0.6);
+}
+
+h2{
+    color: white;
+    font-style: italic;
+}
+
+h3{
+    color: white;
+}
+
+.error-message p{
+    color: #640b0b;
+    font-weight: bolder;
+
+}
+
+.back-button {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 20px 0;
+      font-size: 25px;
+      color: #fff;
+      background-color: rgba(164, 127, 210, 0.6);
+      border: 4px solid white;
+      backdrop-filter: blur(7px);
+      border-radius: 10px;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      max-width: 70px;
+      margin-left: 50%;
+}
+.back-button:hover {
+      background-color: #0056b3;
+}

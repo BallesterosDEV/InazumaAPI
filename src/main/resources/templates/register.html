@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Register</title>
+  <link th:href="@{/imgs/icon.webp}" rel="icon" type="image/x-icon">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" th:href="@{/css/register.css}">
+</head>
+
+<body>
+
+<div class="wrapper">
+  <form th:action="@{/auth/register}" th:object="${registerRequest}" method="post">
+    <h1>Register</h1>
+
+    <div th:if="${#fields.hasErrors('username')}" class="error">
+      <p th:errors="*{username}">Invalid Username</p>
+    </div>
+    <div class="input-box">
+      <input type="text" th:field="*{username}" placeholder="Username" required>
+      <i class='bx bxs-user'></i>
+    </div>
+
+    <div th:if="${#fields.hasErrors('email')}" class="error">
+      <p th:errors="*{email}">Invalid Email</p>
+    </div>
+    <div class="input-box">
+      <input type="email" th:field="*{email}" placeholder="Email" required>
+      <i class='bx bxs-envelope'></i>
+    </div>
+
+    <div th:if="${#fields.hasErrors('password')}" class="error">
+      <p th:errors="*{password}">Invalid Password</p>
+    </div>
+    <div class="input-box">
+      <input type="password" th:field="*{password}" placeholder="Password" required>
+      <i class='bx bxs-lock-alt'></i>
+    </div>
+
+    <button type="submit" class="btn">Submit</button>
+    <div class="register-link">
+      <p>Have an account? <a th:href="@{/login}">Login</a></p>
+    </div>
+  </form>
+</div>
+</body>
+
+</html>
