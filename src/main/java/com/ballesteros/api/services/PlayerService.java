@@ -121,7 +121,6 @@ public class PlayerService {
             }
         } else {
             // Si no hay imagen proporcionada, establece una imagen predeterminada
-
             player.setImage("default-image.jpg");
         }
 

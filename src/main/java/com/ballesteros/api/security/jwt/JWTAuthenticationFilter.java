@@ -35,14 +35,12 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
         final String username;
 
         if (token == null) {
-            System.out.println("Token is null");
             filterChain.doFilter(request, response);
             return;
         }
 
         try {
             username = jwtService.getUsernameFromToken(token);
-            System.out.println("Token username: " + username);
 
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
                 UserDetails userDetails = userDetailsService.loadUserByUsername(username);
@@ -56,12 +54,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
                     authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
                     SecurityContextHolder.getContext().setAuthentication(authToken);
-                    System.out.println("Authentication set in context");
-                } else {
-                    System.out.println("Token is invalid");
                 }
-            } else {
-                System.out.println("Username is null or authentication is already set");
             }
         } catch (JwtException e) {
             e.printStackTrace(); // Imprimir la traza de la excepción para más detalles
