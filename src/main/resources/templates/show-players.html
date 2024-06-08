@@ -24,7 +24,7 @@
     <div class="card-container">
         <!-- Itera sobre la lista de jugadores -->
         <div th:each="player : ${players}" class="card">
-            <img th:src="@{/resources/{image}(image=${player.image})}" alt="Player Image">
+            <img th:src="@{'/resources/' + ${player.image}}" alt="Player Image">
             <div class="card-content">
                 <a th:href="@{'/player-details/' + ${player.id}}" class="player-link">
                     <!-- Enlace al detalle del jugador -->

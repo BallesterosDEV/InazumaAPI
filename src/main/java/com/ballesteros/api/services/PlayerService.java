@@ -109,7 +109,7 @@ public class PlayerService {
                 throw new InvalidFileTypeException(" Only .png, .jpeg, .jpg, and .webp files are allowed.");
             }
 
-            String absolutePath = "C://TFG//resources";
+            String absolutePath = "/home/inazumauser/resources";
             try {
                 byte[] bytesImg = image.getBytes();
                 Path path = Paths.get(absolutePath + "//" + originalFilename);
@@ -153,7 +153,8 @@ public class PlayerService {
      * @param file el archivo de imagen del jugador
      */
     public void updatePlayer(Long playerId, PlayerModel updatedPlayer, MultipartFile file) {
-        PlayerModel player = playerRepository.findById(playerId).orElseThrow(() -> new RuntimeException("Player not found"));
+        PlayerModel player = playerRepository.findById(playerId)
+                .orElseThrow(() -> new RuntimeException("Player not found"));
 
         player.setName(updatedPlayer.getName());
         player.setNickname(updatedPlayer.getNickname());
@@ -161,17 +162,18 @@ public class PlayerService {
         player.setTeam(updatedPlayer.getTeam());
 
         if (file != null && !file.isEmpty()) {
-            // Validar el tipo de archivo
             Validations validations = new Validations();
             String originalFilename = file.getOriginalFilename();
             if (!validations.isValidImage(originalFilename)) {
                 throw new InvalidFileTypeException("Only .png, .jpeg, .jpg, and .webp files are allowed.");
             }
 
-            if (!player.getImage().equalsIgnoreCase("default-image.jpg")) {
+            // Eliminar la imagen antigua si no es la predeterminada
+            if (!"default-image.jpg".equalsIgnoreCase(player.getImage())) {
                 deleteFile(player.getImage());
             }
 
+            // Guardar la nueva imagen
             String imageUrl = saveFile(file);
             player.setImage(imageUrl);
         }
@@ -209,7 +211,7 @@ public class PlayerService {
      */
     private String saveFile(MultipartFile file) {
         if (!file.isEmpty()) {
-            String absolutePath = "C://TFG//resources";
+            String absolutePath = "/home/inazumauser/resources"; // Asegúrate de que esta ruta sea la correcta
             try {
                 byte[] bytesImg = file.getBytes();
                 Path path = Paths.get(absolutePath + "//" + file.getOriginalFilename());
@@ -229,7 +231,7 @@ public class PlayerService {
      */
     private void deleteFile(String filename) {
         if (filename != null && !filename.isEmpty()) {
-            String absolutePath = "C://TFG//resources";
+            String absolutePath = "/home/inazumauser/resources"; // Asegúrate de que esta ruta sea la correcta
             Path path = Paths.get(absolutePath + "//" + filename);
             try {
                 Files.deleteIfExists(path);

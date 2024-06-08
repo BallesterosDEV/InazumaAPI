@@ -27,7 +27,7 @@ public class TeamService {
     public TeamModel saveTeam(TeamModel team, MultipartFile image) {
 
         if (!image.isEmpty()) {
-            String absolutePath = "C://TFG//resources";
+            String absolutePath = "/home/inazumauser/resources";
             try {
                 byte[] bytesImg = image.getBytes();
                 Path path = Paths.get(absolutePath + "//" + image.getOriginalFilename());
