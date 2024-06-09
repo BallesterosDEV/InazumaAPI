@@ -79,6 +79,8 @@ La última sección es un filtro de búsqueda, te permite buscar un jugador por 
 
 - Para acceder a la documentación automática del proyecto basta con ingresar a: 52.174.111.26:8080/swagger-ui/index.html
 - Para acceder a la documentación personalizada, basta con clickar en los archivos que vienen a continuación.
+  
+[Documentación.pdf](https://github.com/user-attachments/files/15752778/Documentacion.pdf)
 
 ### 6 - Conclusiones
 
